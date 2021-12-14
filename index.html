@@ -36,46 +36,35 @@
           <!-- formulario -->
           <form class="row g-3" id="operacion" style="background-color: antiquewhite; display: none;">
             <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">Numero 1</label>
-              <input type="email" class="form-control" id="inputEmail4">
-            </div>
-            <div class="col-md-6">
-              <label for="inputPassword4" class="form-label">numero 2</label>
-              <input type="password" class="form-control" id="inputPassword4">
-            </div>
-            <div class="col-12">
-              <label for="inputAddress" class="form-label">base inicial</label>
-              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="col-12">
-              <label for="inputAddress2" class="form-label">Base a optener</label>
-              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="col-md-6">
-              <label for="inputCity" class="form-label">Resultado</label>
-              <input type="text" class="form-control" id="inputCity">
+              <label for="inputEmail4" class="form-label" >Numero 1</label>
+              <input type="number" class="form-control" id="txtN1">
             </div>
             <div class="col-md-4">
               <label for="inputState" class="form-label">Opciones</label>
-              <select id="inputState" class="form-select">
-                <option selected>Choose...</option>
-                <option>...</option>
+              <select class="form-select" id="txtBase">
+                <option selected>Seleccionar</option>
               </select>
             </div>
-            <div class="col-md-2">
-              <label for="inputZip" class="form-label">Datos</label>
-              <input type="text" class="form-control" id="inputZip">
+            
+            <div class="col-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Numero X</th>
+                    <th scope="col">Numero de base B</th>
+                    <th scope="col">Reasultado N</th>
+                    <th scope="col">Resultado Base B</th>
+                  </tr>
+                </thead>
+                <tbody id="cuerpoTb">
+                  
+                 
+                </tbody>
+              </table>
             </div>
             <div class="col-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                  binario
-                </label>
-              </div>
-            </div>
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary">Calcular </button>
+              <button type="submit" class="btn btn-primary" id="btnOpera">Calcular </button>
             </div>
           </form>
 
