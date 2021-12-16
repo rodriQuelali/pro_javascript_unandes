@@ -1,5 +1,5 @@
 //console.log("holaaa");
-const listaBase = [2,3,4,5,6,7,8,9];
+const listaBase = [2,3,4,5,6,7,8,9,10];
 const txtBases = document.getElementById('txtBase');
 const txtBasesD = document.getElementById('txtBaseD');
 const btn = document.querySelector('#conver');
@@ -16,12 +16,16 @@ listaBase.forEach((listaBases)=>{txtBasesD.innerHTML += `<option>${listaBases}</
 btn.onclick = () =>{
     document.getElementById('operacion').style.display = "block"
     document.getElementById('infor').style.display = "none"
+    document.getElementById('cueT').style.display = "block"
+    document.getElementById('imgR').style.display = "none"
     //console.log("kkkk");
 }
 
 btninicio.onclick = () =>{
     document.getElementById('infor').style.display = "block";
     document.getElementById('operacion').style.display = "none";
+    document.getElementById('cueT').style.display = "none"
+    document.getElementById('imgR').style.display = "block"
 }
 
 //realizando las operaciones
@@ -32,13 +36,18 @@ btnopreacion.addEventListener('submit', (e) => {
     let b = document.getElementById('txtBase').value;
     let d = document.getElementById('txtBaseD').value;
     //operarFu(x, b);
+    //console.log(espacios(x))
     let aux = validacionN(x,b);
     if(aux === true){
-        console.log("datos invalidos");
+        document.getElementById('alertM').innerHTML = `<div class="alert alert-danger" role="alert">
+                                                        los digitos no pueden ser mayores a ala base de origen.
+                                                    </div>`;
+        setTimeout(()=> document.getElementById('alertM').innerHTML = "", 3000);
+        //console.log("datos invalidos");
     }else{
         const op = operarFu(x,b,d);
         listarTabla(op);
-        console.log(validacionN(x,b));
+        //console.log(validacionN(x,b));
         //console.log(op);
     }
 })
@@ -67,12 +76,12 @@ const operarFu = (x,b,d) =>{
     }
     console.log(`${x} de la base ${b}, es: ${n}, en base 10`);
     let n_v = 0
-    p = 1
+    p = 0
     while (n > 0) {
         let dig = parseInt( n % d)
         n = parseInt(n / d);
         n_v = parseInt(n_v + dig * Math.pow(10, p))
-        console.log(n_v);
+        // console.log(n_v);
         p = parseInt(p + 1)
     }
     //Math.pow(10, p);
@@ -87,13 +96,23 @@ const validacionN = (x, b) =>{
     let y = x;
     while (y > 0) {
         let dig = parseInt(y % 10);
-        console.log(dig);
+        //console.log(dig);
         y = parseInt(y / 10)
         if(dig >= b){
             return true;
         }
     }
     return false;
-
 }
+
+const espacios = (x) =>{
+    let nombreV = x.split("");
+    if(nombreV[0] > 0){
+        return nombreV[0]
+    }
+    let p = nombreV.shift();
+    let pp = nombreV.join("");
+    return p + espacios(pp);
+}
+
 
