@@ -5,6 +5,8 @@ const txtBasesD = document.getElementById('txtBaseD');
 const btn = document.querySelector('#conver');
 const btninicio = document.querySelector('#inicio');
 const tablaCuerpo = document.querySelector('#cuerpoTb');
+const alertMen = document.getElementById('alertM');
+
 listaBase.forEach((listaBases)=>{txtBases.innerHTML += `<option>${listaBases}</option>`})
 listaBase.forEach((listaBases)=>{txtBasesD.innerHTML += `<option>${listaBases}</option>`})
 // for (let i = 0; i < listaBase.length; i++) {
@@ -38,19 +40,28 @@ btnopreacion.addEventListener('submit', (e) => {
     //operarFu(x, b);
     //console.log(espacios(x))
     let aux = validacionN(x,b);
-    if(aux === true){
-        document.getElementById('alertM').innerHTML = `<div class="alert alert-danger" role="alert">
-                                                        los digitos no pueden ser mayores a ala base de origen.
-                                                    </div>`;
-        setTimeout(()=> document.getElementById('alertM').innerHTML = "", 3000);
-        //console.log("datos invalidos");
+    if(x > 0){
+        if(aux === true){
+            alerta()
+            //console.log("datos invalidos");
+        }else{
+            const op = operarFu(x,b,d);
+            listarTabla(op);
+            //console.log(validacionN(x,b));
+            //console.log(op);
+        }
     }else{
-        const op = operarFu(x,b,d);
-        listarTabla(op);
-        //console.log(validacionN(x,b));
-        //console.log(op);
+        alerta();
     }
+    
 })
+
+const alerta = () =>{
+    alertMen.innerHTML = `<div class="alert alert-danger" role="alert">
+                                                            los digitos no pueden ser mayores a ala base de origen y el numero tiene que ser mayor a 0.
+                                                        </div>`;
+            setTimeout(()=> alertMen.innerHTML = "", 3000);
+}
 
 const listarTabla = (op) =>{
     tablaCuerpo.innerHTML += `<tr>
@@ -74,7 +85,7 @@ const operarFu = (x,b,d) =>{
         n = parseInt(n + dig * p);
         p = parseInt(p * b);
     }
-    console.log(`${x} de la base ${b}, es: ${n}, en base 10`);
+    //console.log(`${x} de la base ${b}, es: ${n}, en base 10`);
     let n_v = 0
     p = 0
     while (n > 0) {
@@ -85,7 +96,7 @@ const operarFu = (x,b,d) =>{
         p = parseInt(p + 1)
     }
     //Math.pow(10, p);
-    console.log(`${x} de la base ${b}, es: ${n_v}, en base 10`);
+    //console.log(`${x} de la base ${b}, es: ${n_v}, en base 10`);
     return {xx:x,
             bb:b,
             b_n:d,
